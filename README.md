@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/agilarity/jbehave-stories.png?label=ready&title=Ready)](https://waffle.io/agilarity/jbehave-stories)
 jbehave-stories 
 ==============
 [![Build Status](https://travis-ci.org/agilarity/jbehave-stories.svg?branch=master)](https://travis-ci.org/agilarity/jbehave-stories)
