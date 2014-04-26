@@ -13,10 +13,10 @@
 		<maven>3.0.5</maven>
 	</prerequisites>
 	<properties>
-		<checkstyle-checks>${basedir}/src/main/resources/checkstyle.xml</checkstyle-checks>
 		<encoding>UTF-8</encoding>
 		<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
+		<skip.coverage>false</skip.coverage>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -122,6 +122,7 @@
 					<artifactId>cobertura-maven-plugin</artifactId>
 					<version>2.6</version>
 					<configuration>
+					    <skip>${skip.coverage}</skip>
 						<check>
 							<branchRate>100</branchRate>
 							<lineRate>100</lineRate>
@@ -244,6 +245,18 @@
 		</plugins>
 	</reporting>
 	<profiles>
+	    <profile>
+	       <id>skip-coverage</id>
+	       <activation>
+	           <property>
+	               <name>skipTests</name>
+	               <value>true</value>
+	           </property>
+	       </activation>
+	       <properties>
+	         <skip.coverage>true</skip.coverage>
+	       </properties>
+	    </profile>
 		<profile>
 			<id>prepare-for-maven-central</id>
 			<activation>
