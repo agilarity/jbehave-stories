@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.agilarity</groupId>
 	<artifactId>jbehave-stories</artifactId>
@@ -119,25 +120,13 @@
 				</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>cobertura-maven-plugin</artifactId>
-					<version>2.6</version>
-					<configuration>
-					    <skip>${skip.coverage}</skip>
-						<check>
-							<branchRate>100</branchRate>
-							<lineRate>100</lineRate>
-							<haltOnFailure>true</haltOnFailure>
-							<totalBranchRate>100</totalBranchRate>
-							<totalLineRate>100</totalLineRate>
-							<packageLineRate>100</packageLineRate>
-							<packageBranchRate>100</packageBranchRate>
-						</check>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>versions-maven-plugin</artifactId>
 					<version>2.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>0.7.0.201403182114</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -187,14 +176,47 @@
 				<artifactId>maven-resources-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
 				<executions>
 					<execution>
+						<id>default-prepare-agent</id>
 						<goals>
-							<goal>clean</goal>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-check</id>
+						<goals>
 							<goal>check</goal>
 						</goals>
+						<configuration>
+							<skip>${skip.coverage}</skip>
+							<rules>
+								<rule>
+									<element>BUNDLE</element>
+									<limits>
+										<limit>
+											<counter>INSTRUCTION</counter>
+											<value>COVEREDRATIO</value>
+											<minimum>1.00</minimum>
+										</limit>
+										<limit>
+											<counter>CLASS</counter>
+											<value>MISSEDCOUNT</value>
+											<minimum>0</minimum>
+										</limit>
+									</limits>
+								</rule>
+							</rules>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
@@ -235,28 +257,28 @@
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>jdepend-maven-plugin</artifactId>
 				<version>2.0-beta-2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</reporting>
 	<profiles>
-	    <profile>
-	       <id>skip-coverage</id>
-	       <activation>
-	           <property>
-	               <name>skipTests</name>
-	               <value>true</value>
-	           </property>
-	       </activation>
-	       <properties>
-	         <skip.coverage>true</skip.coverage>
-	       </properties>
-	    </profile>
+		<profile>
+			<id>skip-coverage</id>
+			<activation>
+				<property>
+					<name>skipTests</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<properties>
+				<skip.coverage>true</skip.coverage>
+			</properties>
+		</profile>
 		<profile>
 			<id>prepare-for-maven-central</id>
 			<activation>
@@ -320,8 +342,8 @@
 		<connection>scm:git:git@github.com:agilarity/jbehave-stories.git</connection>
 		<developerConnection>scm:git:git@github.com:agilarity/jbehave-stories.git</developerConnection>
 		<url>git@github.com:agilarity/jbehave-stories.git</url>
-	  <tag>jbehave-stories-0.0.1</tag>
-  </scm>
+		<tag>jbehave-stories-0.0.1</tag>
+	</scm>
 	<licenses>
 		<license>
 			<name>MIT License</name>
