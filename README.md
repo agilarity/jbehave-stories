@@ -1,7 +1,8 @@
 [![Stories in Ready](https://badge.waffle.io/agilarity/jbehave-stories.png?label=ready&title=Ready)](https://waffle.io/agilarity/jbehave-stories)
+[![Build Status](https://travis-ci.org/agilarity/jbehave-stories.svg?branch=master)](https://travis-ci.org/agilarity/jbehave-stories)
+
 jbehave-stories 
 ==============
-[![Build Status](https://travis-ci.org/agilarity/jbehave-stories.svg?branch=master)](https://travis-ci.org/agilarity/jbehave-stories)
 
 [JBehave](http://jbehave.org/reference/stable/) is an excellent 
 [BDD](http://dannorth.net/introducing-bdd/) framework  for Java&trade;. 
