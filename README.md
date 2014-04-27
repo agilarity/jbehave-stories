@@ -1,9 +1,9 @@
 [![Stories in Ready](https://badge.waffle.io/agilarity/jbehave-stories.png?label=ready&title=Ready)](https://waffle.io/agilarity/jbehave-stories)
 [![Build Status](https://travis-ci.org/agilarity/jbehave-stories.svg?branch=master)](https://travis-ci.org/agilarity/jbehave-stories)
 
-This project provides a useful [JBehave](http://jbehave.org/reference/stable/) configuration.
+This project provides a useful base class for running [JBehave](http://jbehave.org/reference/stable/) test scenarios.
 
-### Features
+### Base Class Features
 1. Fail when a step is pending.
 2. Show test results in the console.
 3. Report fine grained tests results.
