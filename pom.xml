@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.agilarity</groupId>
 	<artifactId>jbehave-stories</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<packaging>jar</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Make it easier to setup and run JBehave tests</description>
@@ -352,7 +352,7 @@
 		<connection>scm:git:git@github.com:agilarity/jbehave-stories.git</connection>
 		<developerConnection>scm:git:git@github.com:agilarity/jbehave-stories.git</developerConnection>
 		<url>git@github.com:agilarity/jbehave-stories.git</url>
-		<tag>HEAD</tag>
+		<tag>jbehave-stories-1.0.1</tag>
 	</scm>
 	<distributionManagement>
 		<snapshotRepository>
