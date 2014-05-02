@@ -28,7 +28,6 @@ import static org.jbehave.core.reporters.Format.CONSOLE;
 
 import java.util.List;
 
-import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
 import org.jbehave.core.failures.FailingUponPendingStep;
 import org.jbehave.core.junit.JUnitStories;
@@ -46,6 +45,7 @@ public abstract class JBehaveStories extends JUnitStories {
 
     public JBehaveStories() {
         super();
+        configure();
         storyPathFinder = new LocalStoryFinder(this.getClass());
         injectableStepsFactory = new InstanceStepsFactory(configuration(),
                 createSteps());
@@ -63,14 +63,11 @@ public abstract class JBehaveStories extends JUnitStories {
         return injectableStepsFactory;
     }
 
-    @Override
-    public Configuration configuration() {
+    public void configure() {
         final MostUsefulConfiguration config = (MostUsefulConfiguration) super
                 .configuration();
 
         config.usePendingStepStrategy(new FailingUponPendingStep());
         config.storyReporterBuilder().withFormats(CONSOLE);
-
-        return config;
     }
 }
