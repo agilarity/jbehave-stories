@@ -24,19 +24,47 @@
 
 package com.agilarity.jbehave;
 
+import static org.jbehave.core.reporters.Format.CONSOLE;
+
 import java.util.List;
 
+import org.jbehave.core.configuration.MostUsefulConfiguration;
+import org.jbehave.core.failures.FailingUponPendingStep;
+import org.jbehave.core.junit.JUnitStories;
 import org.jbehave.core.steps.InstanceStepsFactory;
 import org.junit.runner.RunWith;
 
 import de.codecentric.jbehave.junit.monitoring.JUnitReportingRunner;
 
 @RunWith(JUnitReportingRunner.class)
-public abstract class JBehaveStories extends JBehaveStoriesBase {
-    protected abstract List<?> createSteps();
+public abstract class JBehaveStoriesBase extends JUnitStories {
+    private final StoryPathFinder storyPathFinder;
+
+    public JBehaveStoriesBase() {
+        super();
+        storyPathFinder = createStoryPathFinder();
+        useConfiguration(createConfiguration());
+        useStepsFactory(createStepsFactory());
+    }
 
     @Override
-    protected InstanceStepsFactory createStepsFactory() {
-        return new InstanceStepsFactory(configuration(), createSteps());
+    public List<String> storyPaths() {
+        return storyPathFinder.findStoryPaths();
+    }
+
+    protected abstract InstanceStepsFactory createStepsFactory();
+
+    protected LocalStoryFinder createStoryPathFinder() {
+        return new LocalStoryFinder(this.getClass());
+    }
+
+    protected MostUsefulConfiguration createConfiguration() {
+        final MostUsefulConfiguration config = (MostUsefulConfiguration) super
+                .configuration();
+
+        config.usePendingStepStrategy(new FailingUponPendingStep());
+        config.storyReporterBuilder().withFormats(CONSOLE);
+
+        return config;
     }
 }
