@@ -32,7 +32,7 @@ import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
 import org.jbehave.core.failures.FailingUponPendingStep;
 import org.jbehave.core.junit.JUnitStories;
-import org.jbehave.core.steps.InstanceStepsFactory;
+import org.jbehave.core.steps.InjectableStepsFactory;
 import org.junit.runner.RunWith;
 
 import de.codecentric.jbehave.junit.monitoring.JUnitReportingRunner;
@@ -53,7 +53,7 @@ public abstract class JBehaveStoriesBase extends JUnitStories {
         return storyPathFinder.findStoryPaths();
     }
 
-    protected abstract InstanceStepsFactory createStepsFactory();
+    protected abstract InjectableStepsFactory createStepsFactory();
 
     protected LocalStoryFinder createStoryPathFinder() {
         return new LocalStoryFinder(this.getClass());

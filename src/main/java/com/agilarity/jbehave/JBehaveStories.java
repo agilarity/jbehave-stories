@@ -26,6 +26,7 @@ package com.agilarity.jbehave;
 
 import java.util.List;
 
+import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.InstanceStepsFactory;
 import org.junit.runner.RunWith;
 
@@ -36,7 +37,7 @@ public abstract class JBehaveStories extends JBehaveStoriesBase {
     protected abstract List<?> createSteps();
 
     @Override
-    protected InstanceStepsFactory createStepsFactory() {
+    protected InjectableStepsFactory createStepsFactory() {
         return new InstanceStepsFactory(configuration(), createSteps());
     }
 }
