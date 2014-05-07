@@ -28,6 +28,7 @@ import static org.jbehave.core.reporters.Format.CONSOLE;
 
 import java.util.List;
 
+import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
 import org.jbehave.core.failures.FailingUponPendingStep;
 import org.jbehave.core.junit.JUnitStories;
@@ -58,7 +59,7 @@ public abstract class JBehaveStoriesBase extends JUnitStories {
         return new LocalStoryFinder(this.getClass());
     }
 
-    protected MostUsefulConfiguration createConfiguration() {
+    protected Configuration createConfiguration() {
         final MostUsefulConfiguration config = (MostUsefulConfiguration) super
                 .configuration();
 
