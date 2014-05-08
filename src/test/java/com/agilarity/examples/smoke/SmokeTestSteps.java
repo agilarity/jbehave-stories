@@ -32,6 +32,9 @@ import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
+import com.agilarity.examples.smoke.domain.SafetyStatus;
+import com.agilarity.examples.smoke.domain.SmokeDetector;
+
 public class SmokeTestSteps {
     private int level;
     private SafetyStatus actual;

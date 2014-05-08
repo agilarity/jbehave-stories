@@ -22,8 +22,24 @@
  * SOFTWARE.
  */
 
-package com.agilarity.examples.smoke;
+package com.agilarity.examples.smoke.domain;
 
-public enum SafetyStatus {
-    SAFE, WARNING, EMERGENCY;
+import static com.agilarity.examples.smoke.domain.SafetyStatus.EMERGENCY;
+import static com.agilarity.examples.smoke.domain.SafetyStatus.SAFE;
+import static com.agilarity.examples.smoke.domain.SafetyStatus.WARNING;
+
+public class SmokeDetector {
+
+    private static final int MAX_WARNING = 14;
+    private static final int MAX_SAFE = 6;
+
+    public SafetyStatus detect(final int level) {
+        if (level < MAX_SAFE) {
+            return SAFE;
+        } else if (level < MAX_WARNING) {
+            return WARNING;
+        } else {
+            return EMERGENCY;
+        }
+    }
 }
