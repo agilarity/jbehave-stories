@@ -3,16 +3,18 @@
 
 This project provides a useful base class for running [JBehave](http://jbehave.org/reference/stable/) test scenarios.
 
-### Base Class Features
-1. Fail when a step is pending.
-2. Show test results in the console.
-3. Report fine grained tests results.
-4. Look for story files at or below the current package.
-5. Filter story file names with the <tt>story.filter</tt> system property.
+### Usage:
+1 - Specify the steps in your test class.
+```java
+public class SmokeTest extends JBehaveStories {
 
-### Usage
-1. Extend <tt>JBehaveStories</tt> and use normal test class naming conventions.
-2. Put your story files at or below the test package, under <tt>src/test/resources</tt>.
-3. Run your test class as a normal JUnit test.
+    @Override
+    protected List<?> createSteps() {
+        return Arrays.asList(new SmokeTestSteps());
+    }
+}
+```
 
-> You can find a complete example in the <tt>com.agilarity.examples.smoke</tt> package.
+2 - Put your story files under <tt>src/test/resources</tt>, at or below the same package as your test class.
+
+3 - Run your test class as a normal [JUnit](http://junit.org/) test.
