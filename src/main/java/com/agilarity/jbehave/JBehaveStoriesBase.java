@@ -35,6 +35,8 @@ import org.jbehave.core.junit.JUnitStories;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.junit.runner.RunWith;
 
+import com.google.java.contract.Ensures;
+
 import de.codecentric.jbehave.junit.monitoring.JUnitReportingRunner;
 
 @RunWith(JUnitReportingRunner.class)
@@ -49,16 +51,20 @@ public abstract class JBehaveStoriesBase extends JUnitStories {
     }
 
     @Override
+    @Ensures("!result.isEmpty()")
     public List<String> storyPaths() {
         return storyPathFinder.findStoryPaths();
     }
 
+    @Ensures("result != null")
     protected abstract InjectableStepsFactory createStepsFactory();
 
+    @Ensures("result != null")
     protected LocalStoryFinder createStoryPathFinder() {
         return new LocalStoryFinder(this.getClass());
     }
 
+    @Ensures("result != null")
     protected Configuration createConfiguration() {
         final MostUsefulConfiguration config = (MostUsefulConfiguration) super
                 .configuration();
