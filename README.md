@@ -9,7 +9,7 @@ This project provides a useful base class for running [JBehave](http://jbehave.o
 <dependency>
     <groupId>com.agilarity</groupId>
     <artifactId>jbehave-stories</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
 </dependency>
 ```
 2 - Specify the steps in your test class.
