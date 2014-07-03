@@ -8,20 +8,16 @@ import org.jbehave.core.io.CodeLocations;
 import org.jbehave.core.io.StoryFinder;
 import org.jbehave.core.junit.JUnitStories;
 
-import com.google.java.contract.Requires;
-
 public class LocalStoryFinder implements StoryPathFinder {
     private final Class<? extends JUnitStories> storiesClass;
     private final String storyFileExtension;
 
-    @Requires("storiesClass != null")
     public LocalStoryFinder(final Class<? extends JUnitStories> storiesClass) {
         super();
         this.storiesClass = storiesClass;
         this.storyFileExtension = "story";
     }
 
-    @Requires({ "storiesClass != null", "!storyFileExtension.isEmpty()" })
     public LocalStoryFinder(final Class<? extends JUnitStories> storiesClass,
             final String storyFileExtension) {
         super();

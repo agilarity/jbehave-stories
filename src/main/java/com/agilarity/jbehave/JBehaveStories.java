@@ -30,8 +30,6 @@ import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.InstanceStepsFactory;
 import org.junit.runner.RunWith;
 
-import com.google.java.contract.Ensures;
-
 import de.codecentric.jbehave.junit.monitoring.JUnitReportingRunner;
 
 @RunWith(JUnitReportingRunner.class)
@@ -39,7 +37,6 @@ public abstract class JBehaveStories extends JBehaveStoriesBase {
     protected abstract List<?> createSteps();
 
     @Override
-    @Ensures("result != null")
     protected InjectableStepsFactory createStepsFactory() {
         return new InstanceStepsFactory(configuration(), createSteps());
     }

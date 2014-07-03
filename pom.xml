@@ -17,7 +17,6 @@
 		<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
 		<skip.coverage>false</skip.coverage>
-		<exclude.contract.classes>**/*contract*</exclude.contract.classes>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -37,11 +36,6 @@
 			<artifactId>jbehave-core</artifactId>
 			<version>3.9.1</version>
 			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.google.java.contract</groupId>
-			<artifactId>cofoja</artifactId>
-			<version>1.1-r150</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -104,10 +98,6 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>2.16</version>
-					<configuration>
-						<argLine>${argLine}
-							-javaagent:${com.google.java.contract:cofoja:jar}</argLine>
-					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -238,11 +228,6 @@
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
-						<configuration>
-							<excludes>
-								<exclude>${exclude.contract.classes}</exclude>
-							</excludes>
-						</configuration>
 					</execution>
 					<execution>
 						<id>default-report</id>
@@ -250,11 +235,6 @@
 						<goals>
 							<goal>report</goal>
 						</goals>
-                        <configuration>
-                            <excludes>
-                                <exclude>${exclude.contract.classes}</exclude>
-                            </excludes>
-                        </configuration>
 					</execution>
 					<execution>
 						<id>default-check</id>
@@ -263,9 +243,6 @@
 						</goals>
 						<configuration>
 							<skip>${skip.coverage}</skip>
-                            <excludes>
-                                <exclude>${exclude.contract.classes}</exclude>
-                            </excludes>
 							<rules>
 								<rule>
 									<element>BUNDLE</element>
